@@ -1,0 +1,52 @@
+{
+  "root": "packages/nest-authorization",
+  "sourceRoot": "packages/nest-authorization/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nest-authorization",
+        "main": "packages/nest-authorization/src/main.ts",
+        "tsConfig": "packages/nest-authorization/tsconfig.app.json",
+        "assets": ["packages/nest-authorization/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "packages/nest-authorization/src/environments/environment.ts",
+              "with": "packages/nest-authorization/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "nest-authorization:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/nest-authorization/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/nest-authorization"],
+      "options": {
+        "jestConfig": "packages/nest-authorization/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

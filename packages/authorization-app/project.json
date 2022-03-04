@@ -1,0 +1,73 @@
+{
+  "root": "packages/authorization-app",
+  "sourceRoot": "packages/authorization-app/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/packages/authorization-app",
+        "index": "packages/authorization-app/src/index.html",
+        "baseHref": "/",
+        "main": "packages/authorization-app/src/main.tsx",
+        "polyfills": "packages/authorization-app/src/polyfills.ts",
+        "tsConfig": "packages/authorization-app/tsconfig.app.json",
+        "assets": [
+          "packages/authorization-app/src/favicon.ico",
+          "packages/authorization-app/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "packages/authorization-app/src/environments/environment.ts",
+              "with": "packages/authorization-app/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "authorization-app:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "authorization-app:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/authorization-app/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/authorization-app"],
+      "options": {
+        "jestConfig": "packages/authorization-app/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

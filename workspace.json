@@ -1,4 +1,8 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "authorization-app": "packages/authorization-app",
+    "authorization-app-e2e": "packages/authorization-app-e2e",
+    "nest-authorization": "packages/nest-authorization"
+  }
 }
